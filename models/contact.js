@@ -18,6 +18,10 @@ const contactSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
 });
 
 contactSchema.post("save", handleSaveErrors);
@@ -26,7 +30,6 @@ const joiContactSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().required(),
   phone: Joi.string().required(),
-  favorite: Joi.boolean(),
 });
 
 const updateFavoriteSchema = Joi.object({
